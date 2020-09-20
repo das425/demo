@@ -1,25 +1,21 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { ConnectedRouter } from 'connected-react-router';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
-function App() {
+import LogIn_box from './container/LogIn_box';
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ConnectedRouter history = {props.history}>
+        <div className="App">
+        <Switch>
+          <Route path = '/login' exact component = {LogIn_box} />
+          <Redirect path='*' to='/login' />
+        </Switch>
+      </div>
+    </ConnectedRouter>
   );
 }
 
